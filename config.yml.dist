@@ -1,0 +1,33 @@
+# This configuration file allows you to set up the events calendar by defining 
+# the fields that will be used to identify the different components of an ical
+# calendar file (e.g. the start date, title, location etc).
+# For example:
+
+# event:
+# 	Start: eventstartdate
+# 	Finish: eventenddate
+# 	Location: location
+# 	Name: title
+# 	UID: --random
+
+# event is the name of the content type that will be used to generate the ical invite.
+# This will also be used in the url string to generate the ical.
+# e.g. mysite.com/ical/event/12 will return the content record for the event (content type)
+# with id 12.
+
+# If you have different content types with different fields to be used in filling 
+# in the ivitation fields, you can have several root keys (e.g. event followed by its
+# 	fields, then appointment followed by its fields and so on).
+# The keys must always have the names listed above, but the values should refer to 
+# fields defined in your contenttypes.yml. The fields should, of course, have the right
+# data type (e.g. datetime for a date etc).
+
+# For the UID (which is a unique event identifier used in ical to refer to a single event)
+# you can pass in the special value --random which will generate a random number or
+# you can pass in a field from your content record.
+event:
+    Start: eventstartdate
+    Finish: eventenddate
+    Location: location
+    Name: title
+    UID: eventid

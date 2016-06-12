@@ -48,19 +48,34 @@ class CalendarInvitesController implements ControllerProviderInterface{
 	 * createIcal will generate a text string to use as an iCal invite
 	 * @return string A formatted string laid out as an iCal invite
 	 */
-	protected function createIcal(\Bolt\Content $record){
+	protected function createIcal(\Bolt\Content $record){ //dump($record);
+
+		//variables to fill in the ical file
+		$currentdatestamp = (new \DateTime())->getTimestamp();
+		$name = $record->title();
+		$start = $record->eventstartdate();
+		$finish = $record->eventenddate();
+		$location = $record->location();
+		$uid = $record->eventid();
+
+		$ctype = $record->contenttype();
+		$url = $this->app['resources']->getUrl("rooturl").$record->slug();
+
 
 		$iCalString = <<<HERE
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
 BEGIN:VEVENT
-UID:uid1@example.com
-DTSTAMP:20160714T170000Z
-ORGANIZER;CN=John Doe:MAILTO:john.doe@example.com
-DTSTART:20160714T170000Z
-DTEND:20160715T035959Z
-SUMMARY:Bastille Day Party
+DTSTAMP:$currentdatestamp
+UID:$uid
+DTSTART;VALUE=DATE:$start
+DTEND;VALUE=DATE:$finish
+SUMMARY:$name
+URL:$url
+DESCRIPTION: EMBO $name in $location
+LOCATION:$location
 END:VEVENT
 END:VCALENDAR
 HERE;
