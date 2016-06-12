@@ -1,0 +1,31 @@
+{
+    "name": "SteveEMBO/CalendarInvites",
+    "description": "Generates an ics calendar invite for the event ID passed in via the url.",
+    "type": "bolt-extension",
+    "keywords" : [ "ics", "ical", "calendar" ],
+    "require": {
+        "bolt/bolt": ">=2.0.0,<3.0.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steve Pewter", 
+            "email": "pewter@embo.org"
+        }
+    ],
+	"minimum-stability" : "dev",
+	"prefer-stable" : true,
+    "autoload": {
+        "files": [
+            "init.php"
+        ],
+        "psr-4": {
+            "Bolt\\Extension\\SteveEMBO\\CalendarInvites\\": "",
+            "Bolt\\Extension\\SteveEMBO\\CalendarInvites\\Tests\\": "tests"
+        }
+    },
+    
+    "extra": {
+        "bolt-assets": "assets"
+    }
+}
