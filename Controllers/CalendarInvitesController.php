@@ -51,15 +51,15 @@ class CalendarInvitesController implements ControllerProviderInterface{
 	protected function createIcal(\Bolt\Content $record){ //dump($record);
 
 		//variables to fill in the ical file
-		$currentdatestamp = (new \DateTime())->getTimestamp();
+		$currentdatestamp = date("Ymd\THiz\Z",(new \DateTime())->getTimestamp());
 		$name = $record->title();
-		$start = $record->eventstartdate();
-		$finish = $record->eventenddate();
+		$start = date("Ymd", strtotime($record->eventstartdate()));
+		$finish = date("Ymd", strtotime($record->eventenddate()));
 		$location = $record->location();
 		$uid = $record->eventid();
 
-		$ctype = $record->contenttype();
-		$url = $this->app['resources']->getUrl("rooturl").$record->slug();
+		//create page URL of original page
+		$url = $this->app['resources']->getUrl("rooturl").$record->contenttype["slug"].'/'.$record->slug();
 
 
 		$iCalString = <<<HERE
