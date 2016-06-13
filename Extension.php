@@ -10,7 +10,7 @@ class Extension extends BaseExtension
     public function initialize()
     {
 
-        $this->app->mount('/ical/{type}/{id}', new Controllers\CalendarInvitesController()); 
+        $this->app->mount('/ical/{type}/{id}', new Controllers\CalendarInvitesController($this->config)); 
         
     }
 

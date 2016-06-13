@@ -10,7 +10,8 @@
 # 	Name: title
 # 	UID: --random
 
-# event is the name of the content type that will be used to generate the ical invite.
+# event is the name of the content type (the "singular_name" in content record)
+# that will be used to generate the ical invite.
 # This will also be used in the url string to generate the ical.
 # e.g. mysite.com/ical/event/12 will return the content record for the event (content type)
 # with id 12.
