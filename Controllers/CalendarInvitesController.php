@@ -66,6 +66,10 @@ class CalendarInvitesController implements ControllerProviderInterface{
 		//if this record type is not configured in the config yaml file, exit
 		if(!$this->shallIProceed($record, $this->config)) return false;
 
+		//escape funny characters
+		$toReplace = array(',',':',';', '"');
+		$replaceWith = array('\,','\:','\;', '\"');
+
 		//get the names of the variables we will need
 		$nameField = $this->config[$record->contenttype["singular_name"]]["Name"];
 		$startField = $this->config[$record->contenttype["singular_name"]]["Start"];
@@ -76,10 +80,10 @@ class CalendarInvitesController implements ControllerProviderInterface{
 
 		//get the fields with the above names - they contain values to fill in the ical file
 		$currentdatestamp = date("Ymd\THis",(new \DateTime())->getTimestamp());
-		$name = $record->$nameField();
+		$name = str_replace($toReplace, $replaceWith, $record->$nameField());
 		$start = date("Ymd", strtotime($record->$startField()));
 		$finish = date("Ymd", strtotime($record->$finishField()));
-		$location = $record->$locationField();
+		$location = str_replace($toReplace, $replaceWith, $record->$locationField());
 		
 		//generate random ID for UID if --random special value was configured
 		if($uidField=="--random"){
