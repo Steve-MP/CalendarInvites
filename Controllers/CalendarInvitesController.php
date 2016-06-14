@@ -38,7 +38,7 @@ class CalendarInvitesController implements ControllerProviderInterface{
 
 			//create iCal string
 			$myIcal = $this->createIcal($this->record);
-			//if(!$myIcal) throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('iCal could not be generated at this address');
+			if(!$myIcal) throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('iCal could not be generated at this address');
 
 			//if the ical was not able to be created, throw a 404
 			
