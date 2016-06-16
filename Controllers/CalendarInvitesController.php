@@ -82,7 +82,7 @@ class CalendarInvitesController implements ControllerProviderInterface{
 		$currentdatestamp = date("Ymd\THis",(new \DateTime())->getTimestamp());
 		$name = str_replace($toReplace, $replaceWith, $record->$nameField());
 		$start = date("Ymd", strtotime($record->$startField()));
-		$finish = date("Ymd", strtotime($record->$finishField()));
+		$finish = date("Ymd", strtotime($record->$finishField(). '+1 day'));
 		$location = str_replace($toReplace, $replaceWith, $record->$locationField());
 		
 		//generate random ID for UID if --random special value was configured
