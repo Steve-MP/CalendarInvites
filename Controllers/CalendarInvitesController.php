@@ -67,8 +67,8 @@ class CalendarInvitesController implements ControllerProviderInterface{
 		if(!$this->shallIProceed($record, $this->config)) return false;
 
 		//escape funny characters
-		$toReplace = array(',',':',';', '"');
-		$replaceWith = array('\,','\:','\;', '\"');
+		$toReplace = array(',',';', '"');
+		$replaceWith = array('\,','\;', '\"');
 
 		//get the names of the variables we will need
 		$nameField = $this->config[$record->contenttype["singular_name"]]["Name"];
