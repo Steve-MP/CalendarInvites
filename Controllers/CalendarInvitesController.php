@@ -108,7 +108,7 @@ DTSTART;VALUE=DATE:$start
 DTEND;VALUE=DATE:$finish
 SUMMARY:$name
 URL:$url
-DESCRIPTION: EMBO $name in $location
+DESCRIPTION:EMBO $name in $location
 LOCATION:$location
 END:VEVENT
 END:VCALENDAR
