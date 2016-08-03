@@ -76,6 +76,7 @@ class CalendarInvitesController implements ControllerProviderInterface{
 		$finishField = $this->config[$record->contenttype["singular_name"]]["Finish"];
 		$locationField = $this->config[$record->contenttype["singular_name"]]["Location"];
 		$uidField =  $this->config[$record->contenttype["singular_name"]]["UID"];
+		$typeField =  $this->config[$record->contenttype["singular_name"]]["Type"];
 
 
 		//get the fields with the above names - they contain values to fill in the ical file
@@ -84,6 +85,7 @@ class CalendarInvitesController implements ControllerProviderInterface{
 		$start = date("Ymd", strtotime($record->$startField()));
 		$finish = date("Ymd", strtotime($record->$finishField(). '+1 day'));
 		$location = str_replace($toReplace, $replaceWith, $record->$locationField());
+		$type = $record->$typeField();
 		
 		//generate random ID for UID if --random special value was configured
 		if($uidField=="--random"){
@@ -106,9 +108,9 @@ DTSTAMP:$currentdatestamp
 UID:$uid
 DTSTART;VALUE=DATE:$start
 DTEND;VALUE=DATE:$finish
-SUMMARY:$name
+SUMMARY:EMBO $type - $name
 URL:$url
-DESCRIPTION:EMBO $name in $location
+DESCRIPTION:EMBO $type - $name in $location
 LOCATION:$location
 END:VEVENT
 END:VCALENDAR

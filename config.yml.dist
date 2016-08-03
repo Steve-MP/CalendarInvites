@@ -32,3 +32,4 @@ event:
     Location: location
     Name: title
     UID: eventid
+    Type: eventtype
